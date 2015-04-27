@@ -84,6 +84,12 @@ class DatabaseManager
 		return result.length > 0;
 	}
 	
+	public function getHoursSpentBetweenDates(first:Date, second:Date) {
+		var result = executeQuery("SELECT DATE_FORMAT(Time, '%Y-%m-%d') AS D, SUM(HoursSpent) AS C FROM SpentTimes	INNER JOIN Tasks ON Tasks.Id = SpentTimes.TaskId WHERE Time BETWEEN '" + first + "' AND '" + second + "' AND Tasks.ProjectId = 1 GROUP BY DATE_FORMAT(Time, '%Y-%m-%d')");
+		
+		return result.getIntResult(0);
+	}
+	
 	/*
 	// modify task by id
 	// , ClosedBy

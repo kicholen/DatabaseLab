@@ -45,6 +45,9 @@ class Main extends Sprite
 		
 		// add player log
 		DatabaseManager.getInstance().addLoginTime(getUserIdByNickname("asd"), "1111.11.1.1.1.1");
+		
+		
+		trace(DatabaseManager.getInstance().getHoursSpentBetweenDates(Date.fromTime(Date.now().getTime() - 3600 * 100), Date.now()));
 	}
 	
 	private function getUserIdByNickname(nickname:String):Int {
